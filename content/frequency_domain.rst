@@ -167,7 +167,7 @@ The term to the left of x(t) is what we call a "complex sinusoid" or "complex ex
    :target: ../_images/freq-shift.svg
    :alt: Depiction of a frequency shift of a signal in the frequency domain
 
-Frequency shift is integral to DSP because we will want to shift signals up and down in frequency for many reasons. This property tells us how to do that (multiply by a sine wave).  Here's another way to visualize this property:
+Frequency shift is integral to DSP because we will want to shift signals up and down in frequency for many reasons. This property tells us how to do that (multiply by a sine wave).  Here's another way to visualize this property, although note that this is simplified since we haven't covered IQ yet:
 
 .. image:: ../_images/freq-shift-diagram.svg
    :align: center
@@ -438,6 +438,20 @@ A simple approach for beginners is to just stick with a Hamming window, which ca
  s = s * np.hamming(100)
 
 If you are afraid of choosing the wrong window, don't be.  The difference between Hamming, Hanning, Blackman, and Kaiser is very minimal compared to not using a window at all since they all taper to zero on both sides and solve the underlying problem.
+
+If you want to see spectral leakage for yourself, the flowgraph below is real GNU Radio, compiled to run inside your browser using `GNU Radio World <https://gnuradioworld.com/examples/analog/frequency-domain-windowing/>`_.  It generates two tones, one strong and one roughly 50 dB weaker sitting right next to it, and plots the spectrum.  Hit run and you'll find the weak tone is nowhere to be seen; it's buried under the leakage from its loud neighbor because no window is being applied (i.e., a rectangular window).  While the flowgraph is running, middle mouse button click the frequency domain plot and switch the "FFT Window" to Blackman, and the weak tone pops right out.  Try other window functions to see what happens.  While you're in there, try changing the FFT size as well.
+
+.. raw:: html
+
+   <!-- ════════ GNU RADIO WORLD EMBED ════════ -->
+   <iframe
+             src="https://gnuradioworld.com/?embed=1&zoom=60%#example=analog/frequency_domain_windowing"
+             title="PySDR: Windowing, FFT Size, and the Waterfall"
+             loading="lazy"
+             allow="cross-origin-isolated; fullscreen"
+             style="display:block; width:100%; aspect-ratio:21/9; min-height:345px; border:0; margin:18px auto 26px;"
+           ></iframe>
+   <!-- ════════ /GNU RADIO WORLD EMBED ════════ -->
 
 
 *******************

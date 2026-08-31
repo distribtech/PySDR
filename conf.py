@@ -7,6 +7,8 @@ import sys, os
 sys.path.append(os.path.relpath('.')) # needed for sphinx to allow importing
 from scrape_patreon import scrape_patreon
 scrape_patreon()
+from gnuradioworld_examples import generate_gnuradioworld_list
+generate_gnuradioworld_list()
 
 ###############################
 # -- General configuration ----
@@ -204,6 +206,7 @@ html_js_files = [
     'js/homepage_app.js',
     'js/tdoa.js',
     'js/eye_diagram_app.js',
+    'js/sin_plus_cos_app.js',
     'js/sidebar_groups.js'
     # we also include the index.js file from the PhasedArrayVisualizer directory in setup() above
 ]
